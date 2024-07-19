@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Carousel Ad App</title>
+  </head>
+  <body>
+    <div class="app">
+      <div class="action-btn-overlay">
+        <button
+          style="--bg: rgb(235, 65, 125)"
+          onclick="prevPage()"
+          class="action-btn prev"
+        >
+          <div class="action-btn-content">
+            <div class="arrow arrow-left"></div>
+          </div>
+        </button>
+        <button
+          style="--bg: rgb(255, 25, 85)"
+          onclick="nextPage()"
+          class="action-btn next"
+        >
+          <div class="action-btn-content">
+            <div class="arrow arrow-right"></div>
+          </div>
+        </button>
+      </div>
+      <!-- <div class="main-container"> -->
+      <div class="carousel">
+        <div data-translate="0%" class="carousel-bg carousel-bg-1"></div>
+        <div data-translate="100%" class="carousel-bg carousel-bg-2"></div>
+        <div data-translate="200%" class="carousel-bg carousel-bg-3"></div>
+      </div>
+      <div class="main-content">
+        <div class="header-text-description-div">
+          <h1 class="header-text">REDBULL</h1>
+          <div class="flavor-div">
+            <h5 data-translate="0%" class="header-flavor">
+              Watermelon Summer Blast
+            </h5>
+            <h5 data-translate="100%" class="header-flavor">
+              DragonFruit Refreshment
+            </h5>
+            <h5 data-translate="200%" class="header-flavor">
+              Strawberry Apricot Mix
+            </h5>
+          </div>
+        </div>
+        <div class="red-bull-can-wrapper">
+          <div data-translate="0%" class="red-bull-div red-bull-one">
+            <img class="redbull-img" src="./assets/redbull1.webp" alt="" />
+          </div>
+          <div data-translate="100%" class="red-bull-div red-bull-two">
+            <img class="redbull-img" src="./assets/redbull2.png" alt="" />
+          </div>
+          <div data-translate="200%" class="red-bull-div red-bull-three">
+            <img class="redbull-img" src="./assets/redbull3.png" alt="" />
+          </div>
+        </div>
+
+        <div class="bg-imgs-wrapper">
+          <div class="bg-imgs-col">
+            <div style="--i: 1s; --dur: 6s" class="bg-img-div">
+              <img
+                class="floating-blur-image"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+              <img
+                class="bg-floating-img bg-floating-img-3"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+            </div>
+            <div style="--i: 0.65s; --dur: 6.4s" class="bg-img-div">
+              <img
+                class="bg-floating-img bg-floating-img-2"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+              <img
+                class="floating-blur-image"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="bg-imgs-col">
+            <div style="--i: 0.25s; --dur: 7.2s" class="bg-img-div">
+              <img
+                class="bg-floating-img bg-floating-img-3"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+              <img
+                class="floating-blur-image"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+            </div>
+            <div style="--i: 1.5s; --dur: 4.5s" class="bg-img-div">
+              <img
+                class="bg-floating-img bg-floating-img-3"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+              <img
+                class="floating-blur-image"
+                src="./assets/watermelon.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+
+      <footer>
+        <a
+          style="--shadow: rgb(235, 25, 45)"
+          href="https://codepen.io/jgreen721"
+          target="_blank"
+          >C0d3P3n</a
+        >
+      </footer>
+    </div>
+
+    <script>
+      let PAGE_TRACKER = 1;
+      let carouselBgs = document.querySelectorAll(".carousel-bg");
+      let redbullImgs = document.querySelectorAll(".red-bull-div");
+      let floatingImgs = document.querySelectorAll(".bg-floating-img");
+      let blurImgs = document.querySelectorAll(".floating-blur-image");
+      let actionBtns = document.querySelectorAll(".action-btn-content");
+      let headerFlavors = document.querySelectorAll(".header-flavor");
+      // let headerFlavor = document.querySelector(".header-flavor");
+      let prevBtn = document.querySelector(".prev");
+      let nextBtn = document.querySelector(".next");
+
+      const appData = [
+        {
+          id: 1,
+          name: "Watermelon Summer Blast",
+          floatingImg: "./assets/watermelon.png",
+          btnBg: "rgb(255, 25, 85)",
+        },
+        {
+          id: 2,
+          name: "Dragonfruit Refreshment",
+          floatingImg: "./assets/dragonfruit.png",
+          btnBg: "rgb(185, 15, 85)",
+        },
+        {
+          id: 3,
+          name: "Strawberry Apricot Splash",
+          floatingImg: "./assets/strawberry.png",
+          btnBg: "rgb(255, 45, 50)",
+        },
+      ];
+
+      function setCarousels() {
+        // console.log("setcarousels fired!", carousels);
+        carouselBgs.forEach((carousel) => {
+          let dataTranslate = carousel.getAttribute("data-translate");
+          console.log(dataTranslate);
+          carousel.style.translate = `${dataTranslate}`;
+        });
+
+        redbullImgs.forEach((redbullImg) => {
+          let dataTranslate = redbullImg.getAttribute("data-translate");
+          console.log(dataTranslate);
+          if (parseInt(dataTranslate) == 0)
+            redbullImg.classList.add("spring-animation");
+          else {
+            redbullImg.classList.remove("spring-animation");
+          }
+          redbullImg.style.translate = `${dataTranslate}`;
+        });
+
+        headerFlavors.forEach((headerFlav) => {
+          let dataTranslate = headerFlav.getAttribute("data-translate");
+          headerFlav.style.transform = `translateY(${dataTranslate})`;
+          // console.log("set Header");
+        });
+      }
+
+      function checkUI() {
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
+        if (PAGE_TRACKER == 1) {
+          prevBtn.style.display = "none";
+        }
+        if (PAGE_TRACKER == 3) {
+          nextBtn.style.display = "none";
+        }
+        setCarousels();
+        updateFloatingImgs(PAGE_TRACKER);
+        actionBtns.forEach((btn) => {
+          btn.style.background = appData[PAGE_TRACKER - 1].btnBg;
+        });
+        // headerFlavor.innerText = appData[PAGE_TRACKER - 1].name;
+      }
+
+      checkUI();
+
+      function nextPage() {
+        PAGE_TRACKER++;
+        carouselBgs.forEach((carousel, idx) => {
+          let currTranslate = carousel.getAttribute("data-translate");
+          currTranslate = parseInt(currTranslate) - 100;
+          console.log("newValue", currTranslate);
+          carousel.setAttribute("data-translate", `${currTranslate}%`);
+          redbullImgs[idx].setAttribute("data-translate", `${currTranslate}%`);
+          headerFlavors[idx].setAttribute(
+            "data-translate",
+            `${currTranslate}%`
+          );
+        });
+
+        checkUI();
+      }
+
+      function prevPage() {
+        PAGE_TRACKER--;
+        carouselBgs.forEach((carousel, idx) => {
+          let currTranslate = carousel.getAttribute("data-translate");
+          currTranslate = parseInt(currTranslate) + 100;
+          console.log("newValue", currTranslate);
+          carousel.setAttribute("data-translate", `${currTranslate}%`);
+          redbullImgs[idx].setAttribute("data-translate", `${currTranslate}%`);
+          headerFlavors[idx].setAttribute(
+            "data-translate",
+            `${currTranslate}%`
+          );
+        });
+        checkUI();
+      }
+
+      function updateFloatingImgs(page) {
+        floatingImgs.forEach((img, idx) => {
+          img.setAttribute("src", appData[page - 1].floatingImg);
+          blurImgs[idx].setAttribute("src", appData[page - 1].floatingImg);
+        });
+      }
+    </script>
+  </body>
+</html>
