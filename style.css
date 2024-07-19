@@ -7,14 +7,15 @@
 }
 
 .app {
-  height: 100vh;
+  /* height: 100vh; */
   max-width: 85rem;
   margin: 0 auto;
   /* border: 2px solid black; */
   position: relative;
   overflow: hidden;
-  background: rgb(15, 20, 17);
-  background: lemonchiffon;
+  height:100vh;
+  /* background: rgb(15, 20, 17);
+  background: lemonchiffon; */
   font-family: "Titillium Web", sans-serif;
 }
 
@@ -422,7 +423,7 @@ footer a{
     cursor: pointer;
     /* position: relative; */
     z-index: 5;
-    bottom: 2rem;
+    bottom: rem;
   }
 
   .next {
@@ -543,7 +544,8 @@ footer a{
   }
 
   .bg-imgs-col{
-    padding:5rem 0rem;
+    padding: 0rem;
+    margin:5rem 0;
     flex-direction:column;
     align-items:flex-start;
     justify-content: space-between;
