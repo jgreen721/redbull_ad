@@ -7,7 +7,7 @@
 }
 
 .app {
-  /* height: 100vh; */
+  height: 100vh;
   max-width: 85rem;
   margin: 0 auto;
   /* border: 2px solid black; */
@@ -415,6 +415,7 @@ footer a{
 }
 
 @media screen and (max-width: 875px) {
+
   .action-btn {
     height: 4rem;
     width: 4rem;
@@ -423,7 +424,7 @@ footer a{
     cursor: pointer;
     /* position: relative; */
     z-index: 5;
-    bottom: rem;
+    /* bottom: rem; */
   }
 
   .next {
@@ -504,13 +505,6 @@ footer a{
   }
 
 
-@keyframes fadeinredbulltext{
-
-  100%{
-    /* transform:translateY(16.5rem); */
-    opacity:1;
-  }
-}
 
 
 .header-text-description-div{
@@ -531,11 +525,11 @@ footer a{
     width: 200px;
     opacity: 95%;
     height: 70%;
-    top: 7.5%;
+    top: 12.5%;
     overflow: hidden;
   }
 
-  .flavor-div
+  
 
   .bg-imgs-wrapper{
     flex-direction:column;
